@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A New Suntory Time: When, Where, and How We Come Together | Whisky Advocate</title>
   <meta name="description" content="A celebration of how we experience the moment today, and how Suntory Global Spirits brings it to life, from everyday rituals to exceptional occasions.">
@@ -16,6 +17,9 @@
 </head>
 <body>
 
+  <div class="curtain" aria-hidden="true"><span class="curtain__mark">Suntory Time</span></div>
+  <div class="progress" aria-hidden="true"></div>
+
   <!-- ===== Top bar ===== -->
   <header class="topbar">
     <div class="container topbar__inner">
@@ -23,7 +27,7 @@
         <img src="assets/img/logos/whisky-advocate-black.png" alt="Whisky Advocate" width="800" height="275">
       </a>
       <div class="topbar__sponsor">
-        <span>Sponsored content presented by</span>
+        <span>Sponsored by</span>
         <img src="assets/img/logos/suntory-global-spirits-black.png" alt="Suntory Global Spirits" width="800" height="209">
       </div>
     </div>
@@ -32,107 +36,118 @@
   <main id="main">
 
     <!-- ===== Hero ===== -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__text">
-        <p class="eyebrow">A New</p>
-        <h1 id="hero-title">Suntory Time</h1>
-        <p>When, Where, and How We Come Together.</p>
-      </div>
-      <div class="hero__art">
-        <picture>
-          <source srcset="assets/img/hero.webp" type="image/webp">
-          <img src="assets/img/hero.jpg" width="1600" height="600" fetchpriority="high"
-               alt="A New Suntory Time: When, Where, and How We Come Together. The Suntory Global Spirits portfolio, including -196, On The Rocks, Jim Beam, Basil Hayden, Maker’s Mark, Hibiki and Roku.">
-        </picture>
-      </div>
-    </section>
-
-    <!-- ===== Intro: How We Experience the Moment ===== -->
-    <section class="section intro" aria-labelledby="intro-title">
-      <div class="container intro__grid">
-        <div class="intro__copy reveal">
-          <p class="eyebrow">Homepage</p>
-          <h2 id="intro-title">How We Experience the Moment</h2>
-          <p class="lede">For all the change around us, one thing remains constant: People still want to come together to have incredible experiences, but in ways that feel right for the moment. A drink at the end of the day with friends. A night out at a musical. Cheering on your team at home or in the stands. These are the rituals that shape how we relax, unwind, connect, and celebrate.</p>
-          <p>Great spirits have always been part of that equation, but now more than ever they aren’t just something to drink, but are more thoughtfully designed to fit any drinking occasion for how consumers choose to enjoy spirits today. And with Suntory Global Spirits, they are shaped by a relentless commitment to quality and craftsmanship.</p>
-          <p>It’s also clear how these occasions have shifted. They start earlier. They move more fluidly. They happen at home, with friends, at concerts and sporting events, each one defined less by routine than by intention. Increasingly, people choose drinks to fit the moment rather than the category.</p>
-          <p>Today’s drinkers are indeed becoming more intentional, choosing spirits that feel right for the occasion and looking for convenience, flavor, and refreshment without losing sight of what matters most: spending time together and having fun.</p>
-          <p>This is a celebration of how we experience those moments today—and how Suntory Global Spirits brings them to life, with a portfolio designed to meet them wherever they happen, from everyday rituals to exceptional occasions.</p>
-          <p class="callout">“Suntory Time” is a simple idea rooted in the belief that there is a right moment for everything. Today, that idea feels more relevant than ever. The moment comes first. What you drink follows. That’s Suntory Time.</p>
+    <div class="hero-wrap">
+      <section class="hero container" aria-labelledby="hero-title">
+        <canvas class="hero__gl" aria-hidden="true"></canvas>
+        <div class="hero__text">
+          <h1 class="hero__lockup" id="hero-title">
+            <img src="assets/img/hero-lockup.png" width="703" height="164" fetchpriority="high"
+                 alt="A New Suntory Time: When, Where, and How We Come Together.">
+          </h1>
+          <a class="hero__cue" href="#intro">Explore the moments</a>
         </div>
-        <div class="intro__media reveal">
+        <div class="hero__art" data-parallax="-0.05" data-parallax-scale="1">
           <picture>
-            <source srcset="assets/img/intro-collage.webp" type="image/webp">
-            <img src="assets/img/intro-collage.jpg" width="1200" height="1099" loading="lazy"
-                 alt="Four moments: a bartender presenting a whisky, friends sharing On The Rocks cocktails at home, a toast with highballs outdoors, and friends with spritz-style drinks on a boat at sunset.">
+            <source srcset="assets/img/hero-bottles.webp" type="image/webp">
+            <img src="assets/img/hero-bottles.jpg" width="815" height="600" fetchpriority="high"
+                 alt="The Suntory Global Spirits portfolio: -196, On The Rocks, Jim Beam, Basil Hayden, Maker’s Mark, Hibiki and Roku Gin.">
           </picture>
         </div>
+      </section>
+    </div>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__track"><span>Suntory Time</span><span>Jim Beam</span><span>Maker’s Mark</span><span>Basil Hayden</span><span>Knob Creek</span><span>Hibiki</span><span>Toki</span><span>Roku</span><span>Haku</span><span>Laphroaig</span><span>Hornitos</span><span>-196</span><span>On The Rocks</span><span>Sipsmith</span><span>Suntory Time</span><span>Jim Beam</span><span>Maker’s Mark</span><span>Basil Hayden</span><span>Knob Creek</span><span>Hibiki</span><span>Toki</span><span>Roku</span><span>Haku</span><span>Laphroaig</span><span>Hornitos</span><span>-196</span><span>On The Rocks</span><span>Sipsmith</span></div></div>
+
+    <!-- ===== Intro: How We Experience the Moment ===== -->
+    <section class="section intro" id="intro" aria-labelledby="intro-title">
+      <div class="container">
+        <h2 class="section-title reveal" id="intro-title" data-split>How We Experience the Moment</h2>
+        <div class="intro__grid">
+          <div class="intro__media reveal wipe" data-parallax="0.06">
+            <picture>
+              <source srcset="assets/img/intro-collage.webp" type="image/webp">
+              <img src="assets/img/intro-collage.jpg" width="1200" height="1099" loading="lazy"
+                   alt="Four moments: a bartender presenting a whisky, friends sharing On The Rocks cocktails at home, a toast with highballs outdoors, and friends with spritz-style drinks on a boat at sunset.">
+            </picture>
+            <p class="intro__caption">From Bar to Home &amp; Everything in Between</p>
+          </div>
+          <div class="intro__copy reveal">
+            <p class="lede">For all the change around us, one thing remains constant: People still want to come together to have incredible experiences, but in ways that feel right for the moment. A drink at the end of the day with friends. A night out at a musical. Cheering on your team at home or in the stands. These are the rituals that shape how we relax, unwind, connect, and celebrate.</p>
+            <p>Great spirits have always been part of that equation, but now more than ever they aren’t just something to drink, but are more thoughtfully designed to fit any drinking occasion for how consumers choose to enjoy spirits today. And with Suntory Global Spirits, they are shaped by a relentless commitment to quality and craftsmanship.</p>
+            <p>It’s also clear how these occasions have shifted. They start earlier. They move more fluidly. They happen at home, with friends, at concerts and sporting events, each one defined less by routine than by intention. Increasingly, people choose drinks to fit the moment rather than the category.</p>
+            <p>Today’s drinkers are indeed becoming more intentional, choosing spirits that feel right for the occasion and looking for convenience, flavor, and refreshment without losing sight of what matters most: spending time together and having fun.</p>
+            <p>This is a celebration of how we experience those moments today—and how Suntory Global Spirits brings them to life, with a portfolio designed to meet them wherever they happen, from everyday rituals to exceptional occasions.</p>
+            <p class="callout">“Suntory Time” is a simple idea rooted in the belief that there is a right moment for everything. Today, that idea feels more relevant than ever. The moment comes first. What you drink follows. That’s Suntory Time.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ===== Trends ===== -->
-    <section class="section section--blush" aria-label="How the occasion has changed">
-      <div class="container">
+    <!-- ===== Trend rows ===== -->
+    <div class="divider reveal"><p class="eyebrow">Meeting the Moment Stories</p></div>
 
-        <article class="feature reveal" id="six-is-the-new-eight">
-          <div class="feature__media">
-            <picture>
-              <source srcset="assets/img/six-is-the-new-eight.webp" type="image/webp">
-              <img src="assets/img/six-is-the-new-eight.jpg" width="1093" height="600" loading="lazy"
-                   alt="A bottle of Basil Hayden bourbon beside a cocktail over ice on a sunlit stone table.">
-            </picture>
-          </div>
-          <div class="feature__copy">
-            <p class="eyebrow">6 Is The New 8</p>
-            <h2>Why the Night Starts Earlier</h2>
-            <p>Evenings now start earlier. What was once a late-night culture has shifted, where drinks begin with a focus on convenience and refreshment, and at the right price point. People are paying closer attention to balancing enjoyment with everything that comes next. This shift is reshaping how people consume alcohol. More flexibility, more occasions, more ways to enjoy a drink without committing to the entire night—where more refreshing options and high-quality ready-to-serves thoughtfully build to keep the moment going.</p>
-          </div>
-        </article>
+    <section class="rows" aria-label="How the occasion has changed">
 
-        <article class="feature feature--flip reveal" id="the-reason-we-go-out">
-          <div class="feature__media">
-            <picture>
-              <source srcset="assets/img/reason-we-go-out.webp" type="image/webp">
-              <img src="assets/img/reason-we-go-out.jpg" width="1093" height="600" loading="lazy"
-                   alt="A busy, warmly lit bar full of people talking over drinks.">
-            </picture>
+      <article class="row" id="six-is-the-new-eight">
+        <div class="row__media row__media--light wipe" data-parallax="0.08">
+          <picture>
+            <source srcset="assets/img/six-is-the-new-eight.webp" type="image/webp">
+            <img src="assets/img/six-is-the-new-eight.jpg" width="1093" height="600" loading="lazy"
+                 alt="A bottle of Basil Hayden bourbon beside a cocktail over ice on a sunlit stone table.">
+          </picture>
+          <div class="row__title row__title--top row__title--dark">
+            <h2 data-split>6 is the New 8</h2>
+            <p class="label">Why the Night Starts Earlier</p>
           </div>
-          <div class="feature__copy">
-            <p class="eyebrow">The Reason We Go Out</p>
-            <h2>The Moment is the Destination</h2>
-            <p>We rarely go out simply for a drink. We go out for what the drink makes possible: connection, discovery, celebration, joy, and shared experience. A game with friends. A concert. A dinner that turns into something exceptional. A reason to step out, to be around people, to feel part of something bigger. The bar or restaurant is part of it, but so is everything around it: new places, new flavors, familiar faces in a different context. At its best, going out offers something simple and essential—connection, discovery, and a sense of occasion. From neighborhood spots to larger cultural moments, the experience leads.</p>
-          </div>
-        </article>
+        </div>
+        <div class="row__copy reveal">
+          <p>Evenings now start earlier. What was once a late-night culture has shifted, where drinks begin with a focus on convenience and refreshment, and at the right price point. People are paying closer attention to balancing enjoyment with everything that comes next. This shift is reshaping how people consume alcohol. More flexibility, more occasions, more ways to enjoy a drink without committing to the entire night—where more refreshing options and high-quality ready-to-serves thoughtfully build to keep the moment going.</p>
+        </div>
+      </article>
 
-        <article class="feature reveal" id="drink-less-drink-better">
-          <div class="feature__media">
-            <picture>
-              <source srcset="assets/img/drink-less-drink-better.webp" type="image/webp">
-              <img src="assets/img/drink-less-drink-better.jpg" width="1093" height="600" loading="lazy"
-                   alt="A bartender pouring a measured whisky over a large ice cube in a rocks glass.">
-            </picture>
+      <article class="row row--flip" id="the-reason-we-go-out">
+        <div class="row__media wipe" data-parallax="0.08">
+          <picture>
+            <source srcset="assets/img/reason-we-go-out.webp" type="image/webp">
+            <img src="assets/img/reason-we-go-out.jpg" width="1093" height="600" loading="lazy"
+                 alt="A busy, warmly lit bar full of people talking over drinks.">
+          </picture>
+          <div class="row__title row__title--bottom">
+            <h2 data-split>The Reason We Go Out</h2>
+            <p class="label">The Moment is the Destination</p>
           </div>
-          <div class="feature__copy">
-            <p class="eyebrow">Drink Less, Drink Better</p>
-            <h2>Why Quality is King</h2>
-            <p>Moderation has evolved into something more considered. It’s not about abstaining, but choosing with purpose. Fewer drinks, better made, better suited to the moment. One expertly crafted cocktail or special whisky over ice instead of two. A pour worth slowing down for. A drink that fits the setting, whether at home or at the bar. Expectations are higher. With fewer drinks, each one matters more. It’s a shift toward quality, where heritage, craftsmanship, and balance make every pour count.</p>
-          </div>
-        </article>
+        </div>
+        <div class="row__copy reveal">
+          <p>We rarely go out simply for a drink. We go out for what the drink makes possible: connection, discovery, celebration, joy, and shared experience. A game with friends. A concert. A dinner that turns into something exceptional. A reason to step out, to be around people, to feel part of something bigger. The bar or restaurant is part of it, but so is everything around it: new places, new flavors, familiar faces in a different context. At its best, going out offers something simple and essential—connection, discovery, and a sense of occasion. From neighborhood spots to larger cultural moments, the experience leads.</p>
+        </div>
+      </article>
 
-      </div>
+      <article class="row" id="drink-less-drink-better">
+        <div class="row__media wipe" data-parallax="0.08">
+          <picture>
+            <source srcset="assets/img/drink-less-drink-better.webp" type="image/webp">
+            <img src="assets/img/drink-less-drink-better.jpg" width="1093" height="600" loading="lazy"
+                 alt="A bartender pouring a measured whisky over a large ice cube in a rocks glass.">
+          </picture>
+          <div class="row__title row__title--bottom">
+            <h2 data-split>Drink Less, Drink Better</h2>
+            <p class="label">Why Quality is King</p>
+          </div>
+        </div>
+        <div class="row__copy reveal">
+          <p>Moderation has evolved into something more considered. It’s not about abstaining, but choosing with purpose. Fewer drinks, better made, better suited to the moment. One expertly crafted cocktail or special whisky over ice instead of two. A pour worth slowing down for. A drink that fits the setting, whether at home or at the bar. Expectations are higher. With fewer drinks, each one matters more. It’s a shift toward quality, where heritage, craftsmanship, and balance make every pour count.</p>
+        </div>
+      </article>
+
     </section>
 
     <!-- ===== Article grid ===== -->
-    <section class="section stories" id="stories" aria-labelledby="stories-title">
+    <section class="section section--blush stories" id="stories" aria-label="Stories">
       <div class="container">
-        <div class="stories__head reveal">
-          <p class="eyebrow eyebrow--center">Go Deeper</p>
-          <h2 id="stories-title">Three Ways the Moment Is Changing</h2>
-        </div>
         <div class="stories__grid">
 
           <a class="story reveal" href="articles/no-effort-no-compromise.html">
-            <div class="story__media">
+            <div class="story__media" data-parallax="0.06">
               <picture>
                 <source srcset="assets/img/articles/no-effort-cover.webp" type="image/webp">
                 <img src="assets/img/articles/no-effort-cover.jpg" width="1000" height="1000" loading="lazy"
@@ -140,15 +155,16 @@
               </picture>
             </div>
             <div class="story__body">
-              <p class="eyebrow">No Effort No Compromise</p>
-              <h3>The Rise of Ready to Serve</h3>
-              <p>Convenience has evolved. Great drinks are now available instantly, without sacrificing quality.</p>
-              <span class="story__cta">Read the story</span>
+              <div>
+                <h3>No Effort<br>No Compromise</h3>
+                <p class="label">The Rise of Ready to Serve</p>
+              </div>
+              <span class="story__arrow" aria-hidden="true">→</span>
             </div>
           </a>
 
           <a class="story reveal" href="articles/where-craft-lives.html">
-            <div class="story__media">
+            <div class="story__media" data-parallax="0.06">
               <picture>
                 <source srcset="assets/img/articles/where-craft-lives-cover.webp" type="image/webp">
                 <img src="assets/img/articles/where-craft-lives-cover.jpg" width="1000" height="1000" loading="lazy"
@@ -156,15 +172,16 @@
               </picture>
             </div>
             <div class="story__body">
-              <p class="eyebrow">Where Craft Lives</p>
-              <h3>Where the Bar Sets the Standard</h3>
-              <p>The bar is where cocktail culture begins and where it continues to evolve.</p>
-              <span class="story__cta">Read the story</span>
+              <div>
+                <h3>Where Craft Lives</h3>
+                <p class="label">Where the Bar Sets the Standard</p>
+              </div>
+              <span class="story__arrow" aria-hidden="true">→</span>
             </div>
           </a>
 
           <a class="story reveal" href="articles/bringing-craft-home.html">
-            <div class="story__media">
+            <div class="story__media" data-parallax="0.06">
               <picture>
                 <source srcset="assets/img/articles/bringing-craft-home-cover.webp" type="image/webp">
                 <img src="assets/img/articles/bringing-craft-home-cover.jpg" width="1000" height="1000" loading="lazy"
@@ -172,10 +189,11 @@
               </picture>
             </div>
             <div class="story__body">
-              <p class="eyebrow">Bringing Craft Home</p>
-              <h3>How the Bar Experience Travels</h3>
-              <p>What starts at the bar no longer stays there. Today, that knowledge travels home.</p>
-              <span class="story__cta">Read the story</span>
+              <div>
+                <h3>Bringing Craft Home</h3>
+                <p class="label">How the Bar Experience Travels</p>
+              </div>
+              <span class="story__arrow" aria-hidden="true">→</span>
             </div>
           </a>
 
@@ -186,15 +204,9 @@
     <!-- ===== Drinks for Every Moment ===== -->
     <section class="section drinks" id="drinks" aria-labelledby="drinks-title">
       <div class="container">
-        <div class="drinks__head reveal">
-          <p class="eyebrow eyebrow--center">The Portfolio</p>
-          <h2 id="drinks-title">Drinks for Every Moment</h2>
-          <p>From an easy serve at the game to a pour worth slowing down for, every moment has its match.</p>
-          <p class="drinks__hint">Hover or tap a drink to learn more and shop</p>
-        </div>
-
+        <h2 class="section-title reveal" id="drinks-title" data-split>Drinks for Every Moment</h2>
+        <p class="drinks__hint reveal">Hover or tap a drink to learn more and shop</p>
         <!--
-          Each card: image + label, with a hidden reveal panel (copy + Shop link).
           Shop links marked data-store="reservebar" are the ReserveBar links from the copy doc;
           these products still need to be added to the WA Store and the href swapped.
         -->
@@ -481,13 +493,16 @@
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner reveal">
-        <p class="eyebrow eyebrow--center">Meeting the Moment</p>
-        <h2>This is Suntory Time</h2>
-        <p>From casual to considered, every moment has its place. The Suntory Global Spirits portfolio is crafted to meet those moments—each one shaped by a commitment to quality, character, and how people come together today. This is Suntory Time.</p>
-        <div class="footer__logos">
+      <div class="footer__grid reveal">
+        <div class="footer__logo footer__logo--left">
+          <img src="assets/img/logos/whisky-advocate-white.png" alt="Whisky Advocate" width="800" height="275">
+        </div>
+        <div class="footer__copy">
+          <h2 data-split>Meeting the Moment</h2>
+          <p>From casual to considered, every moment has its place. The Suntory Global Spirits portfolio is crafted to meet those moments—each one shaped by a commitment to quality, character, and how people come together today. This is Suntory Time.</p>
+        </div>
+        <div class="footer__logo footer__logo--right">
           <img src="assets/img/logos/suntory-global-spirits-white.png" alt="Suntory Global Spirits" width="800" height="209">
-          <img class="wa" src="assets/img/logos/whisky-advocate-white.png" alt="Whisky Advocate" width="800" height="275">
         </div>
       </div>
       <p class="footer__legal">Sponsored content produced by Shanken Creative Group for Suntory Global Spirits. Please drink responsibly. &copy; 2026 M. Shanken Communications, Inc.</p>
@@ -495,5 +510,7 @@
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/hero-gl.js" defer></script>
 </body>
 </html>
