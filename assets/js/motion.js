@@ -107,6 +107,36 @@
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
+  /* ---- 4b. Fit the intro copy to the collage height (desktop) ---- */
+  var introGrid = document.querySelector('.intro__grid');
+  if (introGrid) {
+    var introMedia = introGrid.querySelector('.intro__media');
+    var introCopy = introGrid.querySelector('.intro__copy');
+    var introImg = introMedia && introMedia.querySelector('img');
+    var fitTimer = 0;
+    function fitIntro() {
+      if (!introMedia || !introCopy) { return; }
+      if (window.innerWidth <= 1024) { introCopy.style.removeProperty('--intro-fs'); return; }
+      var target = introMedia.offsetHeight;
+      if (target < 100) { return; }
+      var lo = 12, hi = 17, best = lo;
+      for (var i = 0; i < 9; i++) {
+        var mid = (lo + hi) / 2;
+        introCopy.style.setProperty('--intro-fs', mid.toFixed(2) + 'px');
+        if (introCopy.scrollHeight <= target) { best = mid; lo = mid; } else { hi = mid; }
+      }
+      introCopy.style.setProperty('--intro-fs', best.toFixed(2) + 'px');
+    }
+    function scheduleFit() { clearTimeout(fitTimer); fitTimer = setTimeout(fitIntro, 60); }
+    if (introImg) {
+      if (introImg.complete) { fitIntro(); } else { introImg.addEventListener('load', fitIntro, { once: true }); }
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fitIntro); }
+    window.addEventListener('resize', scheduleFit, { passive: true });
+    if ('ResizeObserver' in window && introMedia) { new ResizeObserver(scheduleFit).observe(introMedia); }
+    fitIntro();
+  }
+
   /* ---- 5. Tilt on drink cards ---- */
   if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     Array.prototype.forEach.call(document.querySelectorAll('.drink'), function (card) {
