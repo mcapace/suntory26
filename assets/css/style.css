@@ -91,12 +91,44 @@ p { margin: 0 0 1em; }
 .hero__inner { position: absolute; inset: 0; z-index: 1; }
 
 /* Lockup occupies the same box it does in the header art (x 2.8%-46.8%, centred at 41.5% height) */
-.hero__lockup { position: absolute; left: 2.8%; top: 20%; width: 44%; height: 43%; margin: 0; display: flex; align-items: center; }
-.hero__lockup img { width: 100%; height: auto; }
+.hero__lockup {
+  position: absolute; left: 2.8%; top: 20%; width: 44%; height: 43%; margin: 0; display: flex; align-items: center;
+  transform: translate(calc(var(--px, 0) * 10px), calc(var(--py, 0) * 6px)); transition: transform 0.9s var(--ease-out);
+}
+
+/* The lockup, sliced into its glyphs so the exact artwork can be choreographed */
+.lk { position: relative; width: 100%; aspect-ratio: 703 / 164; }
+.lk img { position: absolute; display: block; height: auto; }
+.lk__rule--left  { transform-origin: 100% 50%; }
+.lk__rule--right { transform-origin: 0% 50%; }
+.lk__sheen {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 236, 0.85) 50%, transparent 62%);
+  background-size: 300% 100%; background-position: 200% 0;
+  -webkit-mask-image: url('../img/hero-lockup.png'); mask-image: url('../img/hero-lockup.png');
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.js .lk__letter  { opacity: 0; transform: translateY(70%); filter: blur(8px); }
+.js .lk__eyebrow { opacity: 0; transform: translateY(-50%); }
+.js .lk__rule    { opacity: 0; transform: scaleX(0); }
+.js .lk__sub     { opacity: 0; transform: translateY(45%); filter: blur(4px); }
+.is-ready .lk__letter  { animation: lkLetter 1.15s var(--ease-out) forwards; animation-delay: calc(0.2s + var(--i, 0) * 60ms); }
+.is-ready .lk__eyebrow { animation: lkEyebrow 0.9s var(--ease-out) 1.05s forwards; }
+.is-ready .lk__rule    { animation: lkRule 0.9s var(--ease-out) 1.15s forwards; }
+.is-ready .lk__sub     { animation: lkSub 1.0s var(--ease-out) 1.3s forwards; }
+.is-ready .lk__sheen   { animation: lkSheen 8s ease-in-out 2.6s infinite; }
+@keyframes lkLetter  { 0% { opacity: 0; transform: translateY(70%); filter: blur(8px); } 55% { filter: blur(0); } 100% { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes lkEyebrow { from { opacity: 0; transform: translateY(-50%); } to { opacity: 1; transform: none; } }
+@keyframes lkRule    { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: none; } }
+@keyframes lkSub     { from { opacity: 0; transform: translateY(45%); filter: blur(4px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes lkSheen   { 0% { opacity: 1; background-position: 200% 0; } 30% { background-position: -100% 0; opacity: 1; } 31% { opacity: 0; } 100% { opacity: 0; background-position: -100% 0; } }
 
 /* Bottles fill the full height, flush to the right and bottom edges */
 .hero__art { position: absolute; right: 0; bottom: 0; height: 100%; }
-.hero__art picture { height: 100%; }
+.hero__art picture {
+  height: 100%; transform-origin: 50% 100%;
+  transform: translateX(calc(var(--px, 0) * -10px)) scale(1.03); transition: transform 0.9s var(--ease-out);
+}
 .hero__art img {
   height: 100%; width: auto; display: block;
   mix-blend-mode: multiply;
@@ -104,9 +136,8 @@ p { margin: 0 0 1em; }
           mask-image: linear-gradient(to right, transparent 0, #000 14%);
 }
 
-.js .hero__lockup img, .js .hero__art { opacity: 0; }
-.is-ready .hero__lockup img { animation: heroRise 1.3s var(--ease-out) 0.15s forwards; }
-.is-ready .hero__art        { animation: heroArt 1.6s var(--ease-out) 0.35s forwards; }
+.js .hero__art { opacity: 0; }
+.is-ready .hero__art { animation: heroArt 1.6s var(--ease-out) 0.35s forwards; }
 @keyframes heroRise { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
 @keyframes heroFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes heroArt  { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
@@ -114,8 +145,8 @@ p { margin: 0 0 1em; }
 @media (max-width: 860px) {
   .hero { aspect-ratio: auto; min-height: 0; }
   .hero__inner { position: static; }
-  .hero__lockup { position: static; width: 100%; height: auto; padding: 2.5rem var(--gutter) 1.5rem; justify-content: center; }
-  .hero__lockup img { max-width: 480px; }
+  .hero__lockup { position: static; width: 100%; height: auto; padding: 2.5rem var(--gutter) 1.5rem; justify-content: center; transform: none; }
+  .lk { max-width: 480px; }
   .hero__art { position: static; height: auto; }
   .hero__art picture { height: auto; }
   .hero__art img {
@@ -358,7 +389,9 @@ p { margin: 0 0 1em; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .js .hero__lockup img, .js .hero__art { opacity: 1; animation: none; }
+  .js .hero__art, .js .lk__letter, .js .lk__eyebrow, .js .lk__rule, .js .lk__sub { opacity: 1; transform: none; filter: none; animation: none; }
+  .lk__sheen { display: none; }
+  .hero__lockup, .hero__art picture { transform: none; }
   .marquee__track { animation: none; }
   .js .wipe { clip-path: none; }
   .px img { transform: none; }

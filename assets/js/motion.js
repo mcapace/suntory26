@@ -137,6 +137,20 @@
     fitIntro();
   }
 
+  /* ---- 4c. Hero pointer drift (lockup and bottles move against each other) ---- */
+  var hero = document.querySelector('.hero');
+  if (hero && !reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var hraf = 0, hx = 0, hy = 0;
+    function applyHero() { hraf = 0; hero.style.setProperty('--px', hx.toFixed(3)); hero.style.setProperty('--py', hy.toFixed(3)); }
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      hx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      hy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      if (!hraf) { hraf = requestAnimationFrame(applyHero); }
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () { hx = 0; hy = 0; if (!hraf) { hraf = requestAnimationFrame(applyHero); } });
+  }
+
   /* ---- 5. Tilt on drink cards ---- */
   if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     Array.prototype.forEach.call(document.querySelectorAll('.drink'), function (card) {
