@@ -70,22 +70,22 @@
     '  vec3 rose  = vec3(0.950, 0.820, 0.800);',   // pale rose
     '  vec3 burg  = vec3(0.780, 0.560, 0.540);',   // very soft burgundy haze
     '',
-    '  vec3 col = mix(base, cream, smoothstep(0.30, 0.75, n3) * 0.6);',
-    '  col = mix(col, amber, smoothstep(0.42, 0.88, n1) * 0.55);',
-    '  col = mix(col, rose,  smoothstep(0.45, 0.90, n2) * 0.45);',
-    '  col = mix(col, burg,  smoothstep(0.70, 0.98, n1 * n2 * 1.6) * 0.18);',
+    '  vec3 col = mix(base, cream, smoothstep(0.30, 0.75, n3) * 0.30);',
+    '  col = mix(col, amber, smoothstep(0.42, 0.88, n1) * 0.20);',
+    '  col = mix(col, rose,  smoothstep(0.45, 0.90, n2) * 0.16);',
+    '  col = mix(col, burg,  smoothstep(0.70, 0.98, n1 * n2 * 1.6) * 0.05);',
     '',
     // slow diagonal light sweep
     '  float sweepPos = 0.55 + sin(u_time * 0.12) * 0.35;',
     '  float sweep = 1.0 - abs((uv.x + uv.y * 0.35) - sweepPos) * 2.6;',
-    '  col += smoothstep(0.0, 1.0, sweep) * 0.06;',
+    '  col += smoothstep(0.0, 1.0, sweep) * 0.022;',
     '',
     // vignette: slightly deeper toward the bottom edge, lifts the bottles
-    '  col *= 1.0 - smoothstep(0.35, 0.0, uv.y) * 0.05;',
+    '  col *= 1.0 - smoothstep(0.35, 0.0, uv.y) * 0.015;',
     '',
     // film grain
     '  float g = fract(sin(dot(gl_FragCoord.xy + vec2(u_time * 37.0), vec2(12.9898, 78.233))) * 43758.5453);',
-    '  col += (g - 0.5) * 0.028;',
+    '  col += (g - 0.5) * 0.012;',
     '',
     '  gl_FragColor = vec4(col, 1.0);',
     '}'
