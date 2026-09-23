@@ -131,8 +131,6 @@ p { margin: 0 0 1em; }
 .hero__art img {
   height: 100%; width: auto; display: block;
   mix-blend-mode: multiply;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%);
-          mask-image: linear-gradient(to right, transparent 0, #000 5%);
 }
 
 .js .hero__art { opacity: 0; }
