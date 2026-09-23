@@ -55,13 +55,21 @@
     var heads = document.querySelectorAll('[data-split]');
     Array.prototype.forEach.call(heads, function (el) {
       if (el.querySelector('img')) { return; }
-      var words = el.textContent.trim().split(/\s+/);
+      // Split into words, keeping any <br> the markup uses to force a line break
+      var tokens = [];
+      Array.prototype.forEach.call(el.childNodes, function (n) {
+        if (n.nodeType === 3) { n.textContent.trim().split(/\s+/).forEach(function (w) { if (w) { tokens.push(w); } }); }
+        else if (n.nodeName === 'BR') { tokens.push('\n'); }
+        else if (n.textContent) { n.textContent.trim().split(/\s+/).forEach(function (w) { if (w) { tokens.push(w); } }); }
+      });
       el.textContent = '';
-      words.forEach(function (w, i) {
+      var wi = 0;
+      tokens.forEach(function (t, i) {
+        if (t === '\n') { el.appendChild(document.createElement('br')); return; }
         var outer = document.createElement('span'); outer.className = 'w';
-        var inner = document.createElement('span'); inner.textContent = w; inner.style.setProperty('--i', i);
+        var inner = document.createElement('span'); inner.textContent = t; inner.style.setProperty('--i', wi++);
         outer.appendChild(inner); el.appendChild(outer);
-        if (i < words.length - 1) { el.appendChild(document.createTextNode(' ')); }
+        if (i < tokens.length - 1 && tokens[i + 1] !== '\n') { el.appendChild(document.createTextNode(' ')); }
       });
       el.classList.add('is-split');
     });
