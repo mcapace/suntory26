@@ -168,8 +168,6 @@
       var raf = 0, lx = 0, ly = 0;
       function apply() {
         raf = 0;
-        card.style.setProperty('--rx', (ly * -7).toFixed(2) + 'deg');
-        card.style.setProperty('--ry', (lx * 9).toFixed(2) + 'deg');
         card.style.setProperty('--gx', ((lx + 0.5) * 100).toFixed(1) + '%');
         card.style.setProperty('--gy', ((ly + 0.5) * 100).toFixed(1) + '%');
       }

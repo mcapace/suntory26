@@ -276,7 +276,7 @@ p { margin: 0 0 1em; }
 .drink__toggle { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; border: 0; padding: 0; margin: 0; cursor: pointer; z-index: 2; color: transparent; font: inherit; border-radius: 4px; }
 .drink__toggle:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
 .drink__reveal {
-  position: absolute; inset: 0; z-index: 3; border-radius: 4px;
+  position: absolute; inset: 0; z-index: 10; border-radius: 4px; isolation: isolate;
   background: rgba(126, 49, 50, 0.95); color: var(--white);
   padding: clamp(0.9rem, 2vw, 1.4rem); display: flex; flex-direction: column; justify-content: center; gap: 0.6rem;
   opacity: 0; transform: translateY(12px); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease-out); pointer-events: none;
@@ -291,8 +291,7 @@ p { margin: 0 0 1em; }
 .drink__label { transition: opacity 0.3s var(--ease); }
 .drink.is-open .drink__label { opacity: 0; }
 @media (hover: hover) and (pointer: fine) { .drink:hover .drink__label, .drink:focus-within .drink__label { opacity: 0; } }
-.drink.is-open .drink__toggle { z-index: 4; }
-.drink.is-open .drink__reveal { z-index: 5; }
+.drink.is-open .drink__toggle { z-index: 4; pointer-events: none; }
 .drink.is-open .drink__reveal .btn { position: relative; z-index: 6; }
 .drink__close { display: none; position: absolute; top: 0.5rem; right: 0.5rem; z-index: 7; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.18); color: var(--white); border: 0; cursor: pointer; font-size: 1.1rem; line-height: 1; }
 .drink.is-open .drink__close { display: grid; }
@@ -314,9 +313,10 @@ p { margin: 0 0 1em; }
 
 /* Tilt + glare (hover devices only) */
 @media (hover: hover) and (pointer: fine) {
-  .drinks__grid { perspective: 1200px; }
-  .drinks__grid .drink.is-visible { transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.18s ease-out, box-shadow 0.45s var(--ease), opacity 0.9s var(--ease); }
-  .drinks__grid .drink.is-visible:hover, .drinks__grid .drink.is-visible.is-open { transform: translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); box-shadow: 0 30px 50px -30px rgba(94, 35, 37, 0.5); }
+  /* No pointer tilt: it moved the Shop button away from the cursor. Lift + glare only. */
+  .drinks__grid .drink.is-visible { transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease), opacity 0.9s var(--ease); }
+  .drink:hover .drink__toggle, .drink:focus-within .drink__toggle { pointer-events: none; }
+  .drinks__grid .drink.is-visible:hover, .drinks__grid .drink.is-visible.is-open { transform: translateY(-4px); box-shadow: 0 30px 50px -30px rgba(94, 35, 37, 0.5); }
   .drink__glare { position: absolute; inset: 0; z-index: 8; pointer-events: none; border-radius: inherit; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%); opacity: 0; transition: opacity 0.4s var(--ease); mix-blend-mode: soft-light; }
   .drink:hover .drink__glare { opacity: 1; }
 }
